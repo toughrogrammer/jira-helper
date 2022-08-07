@@ -1,0 +1,17 @@
+{
+  "name": "Jira Helper",
+  "description": "My Jira Helper",
+  "version": "1.0",
+  "manifest_version": 3,
+  "permissions": ["activeTab", "scripting"],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": ["https://*.atlassian.net/*"],
+      "js": ["content-script.js"],
+      "run_at": "document_end"
+    }
+  ]
+}
