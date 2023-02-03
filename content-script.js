@@ -1,4 +1,4 @@
-const UI_INTERVAL = 200;
+const UI_INTERVAL = 500;
 
 const getElementByXPath = (path, node) => (
   document.evaluate(
@@ -67,7 +67,7 @@ const moveSprintBottom = async sprint => {
 
 const getMoveButtonTemplate = (buttonId, sprintName, text) => {
   return `
-    <span class="Item-z6qfkt-2 eJTYOk" aria-disabled="false" role="menuitem" tabindex="0">
+    <span class="Item-z6qfkt-2 ekgTSK" aria-disabled="false" role="menuitem" tabindex="0">
       <span class="ItemParts__ContentWrapper-sc-14xek3m-4 eDgbRC">
         <span class="ItemParts__Content-sc-14xek3m-5 jRBaLt" id="${buttonId}" attr-sprintname="${sprintName}">
           ${text}
@@ -84,16 +84,25 @@ function callback(mutationList) {
         return;
       }
 
-      let menuContainer = addedNode.querySelector("div.pdeu07-0");
+    
+      // Move sprint up, Edit sprint, Delete sprint 버튼 있는 div
+      let menuContainer = addedNode.querySelector("div.bRfepw");
       if (!menuContainer) {
         return;
       }
 
-      let header = menuContainer.closest("div.wl0viz-0");
-      let sprintName = header.querySelector("div.ewDMCS").innerText
+      // aria-controls="HEADER-DROP-1002" 같은게 있는 div
+      let header = menuContainer.closest("div.jriNtD");
       let sprintId = header.getAttribute("aria-controls");
+      // Icebox 같은 sprint name이 inner text로 있는 div
+      let sprintName = header.querySelector("div.jsuLXE").innerText
+
+      console.log(sprintId);
+      console.log(sprintName);
 
       let moveToTopButtonId = `${sprintId}-move-to-top`;
+      console.log(moveToTopButtonId);
+
       const moveToTopButton = getMoveButtonTemplate(moveToTopButtonId, sprintName, "Move sprint to top");
       menuContainer.insertAdjacentHTML("beforeend", moveToTopButton);
       menuContainer.querySelector(`#${moveToTopButtonId}`).addEventListener("click", function (e) {
