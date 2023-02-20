@@ -92,10 +92,10 @@ function callback(mutationList) {
       }
 
       // aria-controls="HEADER-DROP-1002" 같은게 있는 div
-      let header = menuContainer.closest("div.jriNtD");
+      let header = menuContainer.closest("div.wl0viz-0");
       let sprintId = header.getAttribute("aria-controls");
       // Icebox 같은 sprint name이 inner text로 있는 div
-      let sprintName = header.querySelector("div.jsuLXE").innerText
+      let sprintName = header.querySelector("div.wl0viz-5").innerText
 
       console.log(sprintId);
       console.log(sprintName);
